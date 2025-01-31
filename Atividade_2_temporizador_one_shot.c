@@ -37,6 +37,11 @@ void inicializacao(){
     
 }
 
+void gpio_irq_handler(uint gpio, uint32_t events)
+{
+    
+}
+
 int main()
 {
     stdio_init_all();
@@ -46,6 +51,7 @@ int main()
     int cont=0;
 
     executando = false;
+    gpio_set_irq_enabled_with_callback(BUTTON, GPIO_IRQ_EDGE_FALL, true, &gpio_irq_handler);
 
     while (true) {
         cont++;
