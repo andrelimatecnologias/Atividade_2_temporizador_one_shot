@@ -39,7 +39,16 @@ void inicializacao(){
 
 void gpio_irq_handler(uint gpio, uint32_t events)
 {
-    
+    uint32_t current_time = to_us_since_boot(get_absolute_time());
+    if ((current_time - last_time) > debounce_time) {
+        last_time = current_time; 
+        if (!executando){
+            executando=true;
+            gpio_put(LED_BLUE,1);
+            gpio_put(LED_RED,1);
+            gpio_put(LED_GREEN,1);
+        }
+    }
 }
 
 int main()
