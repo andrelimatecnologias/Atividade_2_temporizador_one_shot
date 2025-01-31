@@ -22,10 +22,25 @@ static volatile uint32_t debounce_time = 200000;
 static bool executando;
 
 
+void inicializacao(){
+    gpio_init(LED_RED);
+    gpio_init(LED_GREEN);
+    gpio_init(LED_BLUE);
+
+    gpio_set_dir(LED_RED,GPIO_OUT);
+    gpio_set_dir(LED_GREEN,GPIO_OUT);
+    gpio_set_dir(LED_BLUE,GPIO_OUT);
+
+    gpio_init(BUTTON);
+    gpio_set_dir(BUTTON,GPIO_IN);
+    gpio_pull_up(BUTTON);    
+    
+}
 
 int main()
 {
     stdio_init_all();
+    inicializacao();
 
     // A variável "cont" contará quantos segundos se passou durante a execução do programa para ser exibido
     int cont=0;
