@@ -33,7 +33,10 @@ Este repositório contém o projeto de controle de uma animação utilizando tem
 6. Aperte o botão e obseve que a animação vai começar. Espere até a animação terminar para apertar no botão novamente, pois, se pressionar antes nada irá acontecer.
 
 ### Observação
-A prática pode ser realizada tanto com o simulador Wokwi, como em hardware real.
+A prática pode ser realizada tanto com o simulador Wokwi, como em hardware real. (No hardware real o LED RGB da placa BitDogLab será utilizado, portanto ao desligar cada um dos LEDs se espera obter um efeito como:
+   1. primeiro instante o LED estará branco: Verde,Azul e Vermelho ligados soma se a cor branca.
+   2. segundo instante o LED estará Roxo (Magenta): Azul e Vermelho ligados soma se a cor Roxa (Magenta).
+   3. terceiro instante o LED estará Vermelho pois é o único ligado.
 
 ## Vídeo de teste
 Um vídeo mostrando o teste desta atividade pode ser acessado no link: https://www.youtube.com/watch?v=ddZUTpptMZ0
