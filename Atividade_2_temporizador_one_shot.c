@@ -37,6 +37,31 @@ void inicializacao(){
     
 }
 
+
+/*
+    Nesta função o temporizador é chamado e realimentado até que todos os LEDs se apaguem finalizando a animação, liberando a variável
+    "executando" para que permita que o botão reinicie tudo novamente
+*/
+int64_t turn_off_callback(alarm_id_t id, void *user_data) {
+    if(executando){
+        if(gpio_get(LED_GREEN)){
+            gpio_put(LED_GREEN,0);
+            add_alarm_in_ms(3000, turn_off_callback, NULL, false);
+            return 0;
+        }
+        if(gpio_get(LED_BLUE)){
+            gpio_put(LED_BLUE,0);
+            add_alarm_in_ms(3000, turn_off_callback, NULL, false);
+            return 0;
+        }
+        if(gpio_get(LED_RED)){
+            gpio_put(LED_RED,0);
+            executando=false;
+        }
+    }
+    return 0;
+}
+
 void gpio_irq_handler(uint gpio, uint32_t events)
 {
     uint32_t current_time = to_us_since_boot(get_absolute_time());
@@ -47,6 +72,7 @@ void gpio_irq_handler(uint gpio, uint32_t events)
             gpio_put(LED_BLUE,1);
             gpio_put(LED_RED,1);
             gpio_put(LED_GREEN,1);
+            add_alarm_in_ms(3000, turn_off_callback, NULL, false);
         }
     }
 }
