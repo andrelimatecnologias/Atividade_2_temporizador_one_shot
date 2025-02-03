@@ -19,7 +19,7 @@ static volatile uint32_t debounce_time = 200000;
     A variável "executando" vai ser utilizada como controle para que não haja uma reinicialização da configuração dos temporizadores
     antes do apagar de todos os LEDs, concluindo a animação.
 */
-static bool executando;
+static volatile bool executando;
 
 
 void inicializacao(){
